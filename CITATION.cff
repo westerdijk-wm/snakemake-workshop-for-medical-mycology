@@ -5,7 +5,7 @@
 # ensuring that the author list and other fields remain accurate.
 
 cff-version: 1.2.0
-title: FIXME
+title: Snakemake workshop for medical mycology
 message: >-
   Please cite this lesson using the information in this file
   when you refer to it in publications, and/or if you
@@ -13,10 +13,18 @@ message: >-
   training material.
 type: dataset
 authors:
-  - given-names: FIXME
-    family-names: FIXME
+  - given-names: Balazs
+    family-names: Brankovics
+  - given-names: Manuel
+    family-names: Leeuwerik
 abstract: >-
-  FIXME Replace this with a short abstract describing the
-  lesson, e.g. its target audience and main intended
-  learning objectives.
+  This is an introductory workshop to using Snakemake workflows
+  for analysis of genomic data in medical mycology. The workshop
+  is designed for medical mycologists who have basic understanding
+  of using the command line. Learners will understand how to reuse
+  existing Snakemake workflows, how to update the configurations
+  and input files to run the workflows on their own data.
+  The example workflows cover multi locus sequence analysis (MLSA)
+  from genome assemblies, phylogenomics, and variant calling
+  and variant annotation for resistance genes.
 license: CC-BY-4.0
