@@ -49,10 +49,16 @@ conda create -c conda-forge -c bioconda -c nodefaults --name snakemake snakemake
 This will create the environment that we need and are going to use during the
 workshop.
 
-:::::::::::::::::::::::: solution
+
+::::::::::::::::::::::::::::::::::::: challenge
+
 
 If all goes well you will see that your environment is created and how it can be
 activated.
+
+
+:::::::::::::::::::::::: solution
+
 
 ```text
 Downloading and Extracting Packages:
@@ -71,9 +77,15 @@ Executing transaction: done
 
 ```
 
+
 :::::::::::::::::::::::::::::::::
 
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+
 ::::::::::::::::::::::::::::::::::::::: discussion
+
 
 ### Optional editor
 
@@ -81,7 +93,9 @@ It is recommended that you use [Visual Studio Code](https://code.visualstudio.co
 for working through this material, because it integrates the terminal, file structure
 and file editing nicely together.
 
+
 :::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 <!--
 ## Data Sets
