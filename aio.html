@@ -236,7 +236,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Using Markdown</a>
+        <a href="01_snakemake_intro.html">1. Introduction to Snakemake</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -299,11 +299,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>All in One View</h1>
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Using Markdown</a></p>
+<section id="aio-01_snakemake_intro"><p>Content from <a href="01_snakemake_intro.html">Introduction to Snakemake</a></p>
 <hr>
-<p>Last updated on 2025-07-11 |
+<p>Last updated on 2026-07-09 |
 
-        <a href="https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology/edit/main/episodes/01_snakemake_intro.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -315,8 +315,8 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How do you write a lesson using Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<li>What is Snakemake?</li>
+<li>Why choose Snakemake?</li>
 </ul>
 </div>
 </div>
@@ -326,127 +326,160 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Explain how to use markdown with The Carpentries Workbench</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<li>Explain how workflow managers contribute to reproducibility and
+reusability</li>
+<li>Explain whether Snakemake is a good choice for the given task</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<div class="section level1">
+<h1 id="what-is-snakemake">What is Snakemake?<a class="anchor" aria-label="anchor" href="#what-is-snakemake"></a>
+</h1>
+<blockquote>
+<p><a href="https://snakemake.readthedocs.io/en/stable/" class="external-link">Official
+Snakemake documation</a></p>
+</blockquote>
+<p>Snakemake is workflow management system, a tool to create
+reproducible and scalable data analyses. Workflows are described via a
+human readable, Python based language. They can be seamlessly scaled to
+server, cluster, grid and cloud environments, without the need to modify
+the workflow definition. Finally, Snakemake workflows can entail a
+description of required software, which will be automatically deployed
+to any execution environment.</p>
+<div class="section level2">
+<h2 id="how-can-you-use-snakemake">How can you use Snakemake?<a class="anchor" aria-label="anchor" href="#how-can-you-use-snakemake"></a>
 </h2>
-<hr class="half-width">
-<p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.html" class="external-link">Pandoc-flavored Markdown</a>
-for static files and <a href="https://rmarkdown.rstudio.com/" class="external-link">R
-Markdown</a> for dynamic files that can render code into output. Please
-refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson:</p>
-<ol style="list-style-type: decimal">
-<li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol>
-<div id="challenge-1-can-you-do-it" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?</h3>
-<div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Output </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
-</div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?</h3>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
-</button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
-<div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="figures">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<hr class="half-width">
-<p>You can use standard markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure><div id="callout1" class="callout">
+<p>Use cases:</p>
+<ul>
+<li>You can create new workflow:
+<ul>
+<li>You can write up an existing “manual” workflow</li>
+<li>You can write up a specific analysis for reproducibility</li>
+<li>You can build the Snakemake file (workflow) while you are analyzing
+your data</li>
+</ul>
+</li>
+<li>You can use existing workflows for your data</li>
+<li>You can use existing workflows that you expand further on</li>
+</ul>
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <span class="callout-header">Callout</span>
 <div class="callout-inner">
 <div class="callout-content">
-<p>Callout sections can highlight information.</p>
-<p>They are sometimes used to emphasise particularly important points
-but are also used in some lessons to present “asides”: content that is
-not central to the narrative of the lesson, e.g. by providing the answer
-to a commonly-asked question.</p>
+<p>It can be handy to use Snakemake to explore or analyze your data,
+because then you will have a reproducible analysis. It will be also
+clear what kind of steps you have taken. Snakemake can check if
+intermediary results have changed as you optimize different steps.</p>
+<p>Snakemake creates outputs in your working directory in a way you
+would create them by running the steps manually (unlike nextflow). This
+can help with learning and adapting in a research environment.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="math">Math<a class="anchor" aria-label="anchor" href="#math"></a>
+</div>
+</div>
+<div class="section level1">
+<h1 id="using-existing-workflows">Using existing workflows<a class="anchor" aria-label="anchor" href="#using-existing-workflows"></a>
+</h1>
+<p>In this workshop, we are going to be using existing workflows for our
+analysis. The goal is to educate users in how to us workflows and adjust
+inputs and configurations to meet their needs. Creating workflows is
+considered as development is more advanced than reusing existing
+workflows. Therefore, we will not create our own workflows.</p>
+<div class="section level2">
+<h2 id="finding-workflows-to-use">Finding workflows to use<a class="anchor" aria-label="anchor" href="#finding-workflows-to-use"></a>
 </h2>
-<hr class="half-width">
-<p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
+<p>Most workflows are published on Github, and you can search there. The
+Snakemake project is also has a webpage <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/all_standardized_workflows.html" class="external-link">snakemake-workflow-catalog</a>
+where you can find workflows.</p>
+<p>We will be using the following workflows during this workshop:</p>
+<ul>
+<li>
+<a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani" class="external-link">westerdijk-wm/snakemake-mlsa-ani</a>
+<ul>
+<li>Snakemake workflow for MLSA (multi locus sequence analysis) and ANI
+analysis</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf/" class="external-link">b-brankovics/bwa-gatk-fasttree-smkwf</a>
+<ul>
+<li>Variant calling workflow for creating SNP phylogenies</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff" class="external-link">westerdijk-wm/smkwf-bwa-gatk-snpeff</a>
+<ul>
+<li>A snakemake workflow for mapping, variant-calling and annotating
+variants using SNPeff</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="setting-up-the-workflow-for-your-analysis">Setting up the workflow for your analysis<a class="anchor" aria-label="anchor" href="#setting-up-the-workflow-for-your-analysis"></a>
+</h2>
+<p>A well designed workflow includes documentation who you should use
+it.</p>
+<div id="challange-1-understanding-documentation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challange-1-understanding-documentation" class="callout-inner">
+<h3 class="callout-title">Challange 1: Understanding documentation</h3>
+<div class="callout-content">
+<p>Can you find how you should setup a run for <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani" class="external-link">westerdijk-wm/snakemake-mlsa-ani</a>?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>It is found <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani#installation" class="external-link">here</a>:</p>
+<div class="section level3">
+<h3 id="option-1-clone-with-git">Option 1 — Clone with Git<a class="anchor" aria-label="anchor" href="#option-1-clone-with-git"></a>
+</h3>
+<p>Ensure Conda and Git are installed, then:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">git</span> clone https://github.com/westerdijk-wm/snakemake-mlsa-ani.git</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="bu">cd</span> snakemake-mlsa-ani</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="ex">conda</span> env create <span class="at">-f</span> workflow/envs/mlsa.yaml</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1" aria-label="code-block-1-4"></a><span class="ex">conda</span> activate snake-mlsa-ani</span></code></pre>
+</div>
+</div>
+<div class="section level3">
+<h3 id="option-2-deploy-with-snakedeploy">Option 2 — Deploy with Snakedeploy<a class="anchor" aria-label="anchor" href="#option-2-deploy-with-snakedeploy"></a>
+</h3>
+<p><a href="https://snakedeploy.readthedocs.io" class="external-link">Snakedeploy</a> deploys
+the workflow into any working directory without cloning the full
+repository, keeping your data and workflow code cleanly separated:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">conda</span> install bioconda::snakedeploy</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">snakedeploy</span> deploy-workflow <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    https://github.com/westerdijk-wm/snakemake-mlsa-ani . <span class="at">--branch</span> main</span></code></pre>
+</div>
+<p>This downloads the workflow files and creates a <code>config/</code>
+directory with template configuration files ready to edit.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -455,14 +488,11 @@ this:</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul>
-<li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<li>Know what Snakemake is and where to find more information (<a href="https://snakemake.readthedocs.io/en/stable/" class="external-link">Official Snakemake
+documation</a>)</li>
+<li>Know where to find workflows: <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/all_standardized_workflows.html" class="external-link">snakemake-workflow-catalog</a>
+</li>
+<li>Know how to find setup instructions</li>
 </ul>
 </div>
 </div>
@@ -471,7 +501,8 @@ locally</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section>
+</div>
+</div></section>
 </div>
     </main>
 </div>

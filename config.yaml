@@ -67,7 +67,7 @@ contact: '6728856+b-brankovics@users.noreply.github.com'
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
+- 01_snakemake_intro.md
 
 # Information for Learners
 learners: 
