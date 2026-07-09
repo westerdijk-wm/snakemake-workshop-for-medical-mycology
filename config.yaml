@@ -21,10 +21,10 @@ carpentry_description: 'Snakemake workshop for medical mycology'
 title: 'Snakemake workshop for medical mycology' # FIXME
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: ~ # FIXME
+created: 2026-07-09
 
 # Comma-separated list of keywords for the lesson
-keywords: 'snakemake, workflow, bioinformatics, medical mycology, MLSA, phylogenomics, variant calling' # FIXME
+keywords: 'snakemake, workflow-management, bioinformatics, medical-mycology, MLSA, phylogenomics, variant-calling'
 
 # Life cycle stage of the lesson
 # refer to <https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html> for details
@@ -35,13 +35,13 @@ life_cycle: 'pre-alpha' # FIXME
 license: 'CC-BY 4.0'
 
 # Link to the source repository for this lesson
-source: 'https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology' # FIXME
+source: 'https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology'
 
 # Default branch of your lesson
 branch: 'main'
 
 # Who to contact if there are any issues
-contact: '6728856+b-brankovics@users.noreply.github.com' # FIXME
+contact: '6728856+b-brankovics@users.noreply.github.com'
 
 # Navigation ------------------------------------------------
 #
