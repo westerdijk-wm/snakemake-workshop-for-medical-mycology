@@ -7,7 +7,6 @@ exercises: 10 # exercise time in minutes
 :::::::::::::::::::::::::::::::::::::: questions 
 
 - Where to look for user information in standardized workflows?
-- What is the the recommended directory structure?
 - How to run workflows locally?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -78,7 +77,7 @@ so we can use `` to get the workflow locally.
 ```bash
 conda activate snakemake
 snakedeploy deploy-workflow \
-    https://github.com/westerdijk-wm/snakemake-mlsa-ani . --branch main
+    https://github.com/westerdijk-wm/snakemake-mlsa-ani . --tag v1.0.0
 ```
 
 :::::::::::::::::::::::: solution 
@@ -128,7 +127,7 @@ This will list the following files:
 - `config/ref-genes.fas`
 
 In general, README files are the good place to start with. They are meant for humans to read.
-However, the online version is nicer to read: [config/config.yaml](https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/config/README.md)
+However, the online version is nicer to read: [config/README.md](https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/config/README.md)
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
@@ -270,7 +269,7 @@ Then open `report.html` in a browser to check the results. The most important ar
 | `results/phylogenetics/MLSA_tree.pdf` | Visualization of MLSA tree. | 
 | `results/ANI/skani/skani.pdf` | MLSA tree combined with ANI heatmap. |
 
-With this you have successfully ran an external snakemake workflow by first
+With this you have successfully run an external snakemake workflow by first
 using snakedeploy, checking the input parameters and then executing it. 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
