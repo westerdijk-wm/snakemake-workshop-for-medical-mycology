@@ -69,7 +69,7 @@ Executing transaction: done
 #
 # To activate this environment, use
 #
-#     $ conda activate test-snakemake
+#     $ conda activate snakemake
 #
 # To deactivate an active environment, use
 #
