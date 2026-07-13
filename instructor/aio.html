@@ -535,7 +535,6 @@ any links that you are not going to use.
 <h3 class="card-title">Questions</h3>
 <ul>
 <li>Where to look for user information in standardized workflows?</li>
-<li>What is the the recommended directory structure?</li>
 <li>How to run workflows locally?</li>
 </ul>
 </div>
@@ -628,7 +627,7 @@ locally.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">conda</span> activate snakemake</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">snakedeploy</span> deploy-workflow <span class="dt">\</span></span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    https://github.com/westerdijk-wm/snakemake-mlsa-ani . <span class="at">--branch</span> main</span></code></pre>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    https://github.com/westerdijk-wm/snakemake-mlsa-ani . <span class="at">--tag</span> v1.0.0</span></code></pre>
 </div>
 </div>
 </div>
@@ -687,7 +686,7 @@ in this directory, so we could also say <code>config</code>):</p>
 </ul>
 <p>In general, README files are the good place to start with. They are
 meant for humans to read. However, the online version is nicer to read:
-<a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/config/README.md" class="external-link">config/config.yaml</a></p>
+<a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/config/README.md" class="external-link">config/README.md</a></p>
 <div id="exercise-2-can-you-locate-the-reference-sequences" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -911,7 +910,7 @@ The most important are the following:</p>
 </tr>
 </tbody>
 </table>
-<p>With this you have successfully ran an external snakemake workflow by
+<p>With this you have successfully run an external snakemake workflow by
 first using snakedeploy, checking the input parameters and then
 executing it.</p>
 <div id="keypoints1" class="callout keypoints">
