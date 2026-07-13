@@ -68,6 +68,7 @@ contact: '6728856+b-brankovics@users.noreply.github.com'
 # Order of episodes in your lesson
 episodes: 
 - 01_snakemake_intro.md
+- 02_using_workflows_MLSA.md
 
 # Information for Learners
 learners: 
