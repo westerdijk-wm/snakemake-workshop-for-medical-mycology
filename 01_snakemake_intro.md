@@ -79,7 +79,7 @@ A well designed workflow includes documentation who you should use it.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-### Challange 1: Understanding documentation
+### Challenge 1: Understanding documentation
 
 Can you find how you should setup a run for [westerdijk-wm/snakemake-mlsa-ani](https://github.com/westerdijk-wm/snakemake-mlsa-ani)?
 
