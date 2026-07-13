@@ -7,6 +7,9 @@
     <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/01_snakemake_intro.html</loc>
   </url>
   <url>
+    <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/02_using_workflows_MLSA.html</loc>
+  </url>
+  <url>
     <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/404.html</loc>
   </url>
   <url>
@@ -32,6 +35,9 @@
   </url>
   <url>
     <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/instructor/01_snakemake_intro.html</loc>
+  </url>
+  <url>
+    <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/instructor/02_using_workflows_MLSA.html</loc>
   </url>
   <url>
     <loc>https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/instructor/404.html</loc>

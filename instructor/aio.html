@@ -246,6 +246,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush3">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading3">
+        <a href="02_using_workflows_MLSA.html">2. Using Snakemake workflows, MLSA</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -447,7 +459,7 @@ it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>It is found <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani#installation" class="external-link">here</a>:</p>
 <div class="section level3">
@@ -496,6 +508,425 @@ documation</a>)</li>
 <li>Know where to find workflows: <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/all_standardized_workflows.html" class="external-link">snakemake-workflow-catalog</a>
 </li>
 <li>Know how to find setup instructions</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</div>
+</div></section><section id="aio-02_using_workflows_MLSA"><p>Content from <a href="02_using_workflows_MLSA.html">Using Snakemake workflows, MLSA</a></p>
+<hr>
+<p>Last updated on 2026-07-13 |
+
+        <a href="https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology/edit/main/episodes/02_using_workflows_MLSA.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Where to look for user information in standardized workflows?</li>
+<li>What is the the recommended directory structure?</li>
+<li>How to run workflows locally?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Identify what are the input parameters and data of a workflow</li>
+<li>Locate which output files will be created</li>
+<li>Execute existing workflow locally</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
+<p>In this, episode we will explore the <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani" class="external-link">westerdijk-wm/snakemake-mlsa-ani</a>
+workflow as an example. It helps automate multilocus sequences analysis
+(MLSA), which is a standard method in fungal phylogeny (also used for
+other organisms).</p>
+<div class="section level2">
+<h2 id="workflow-overview-according-to-documentation">Workflow overview according to documentation<a class="anchor" aria-label="anchor" href="#workflow-overview-according-to-documentation"></a>
+</h2>
+<p><strong>snakemake-MLSA-ANI</strong> is a reproducible Snakemake
+workflow designed to generate phylogenetic and genomic similarity
+analyses from assembled genomes.</p>
+<p>Starting from genome assemblies, the pipeline:</p>
+<ul>
+<li>validates the reference gene database</li>
+<li>assesses genome assembly quality (QUAST)</li>
+<li>extracts homologous loci using reference sequences (minimap2)</li>
+<li>performs locus-level quality control</li>
+<li>generates multiple sequence alignments (MUSCLE)</li>
+<li>concatenates loci into MLSA supermatrices</li>
+<li>infers phylogenetic trees (IQ-TREE, RAxML, or FastTree)</li>
+<li>optionally computes ANI between genomes (skani, FastANI, or
+pyANI)</li>
+<li>optionally downloads and incorporates public genomes from NCBI</li>
+</ul>
+<p>Originally developed for fungal phylogenetics, but applicable to any
+organism with suitable reference loci.</p>
+</div>
+</div>
+<div class="section level1">
+<h1 id="deploying-a-workflow-locally">Deploying a workflow locally<a class="anchor" aria-label="anchor" href="#deploying-a-workflow-locally"></a>
+</h1>
+<p>The workflow is available through Github at <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani" class="external-link">https://github.com/westerdijk-wm/snakemake-mlsa-ani</a>
+in order to run it locally, we need to get a local copy on our computer
+first. For this, we will use <code>snakedeploy</code>.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Remember to setup a <code>snakemake</code> environment specified in
+the</p>
+</div>
+</div>
+</div>
+<div id="exercise-1-deploy-workflow-for-local-execution" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-1-deploy-workflow-for-local-execution" class="callout-inner">
+<h3 class="callout-title">Exercise 1: Deploy workflow for local
+execution</h3>
+<div class="callout-content">
+<p>Create a directory, <code>mlsa</code> that we will use for this
+episode, and change to that directory.</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">mkdir</span> mlsa</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="bu">cd</span> mlsa</span></code></pre>
+</div>
+<p>Then we need to activate our conda environment
+<code>snakemake</code>, so we can use `` to get the workflow
+locally.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">conda</span> activate snakemake</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="ex">snakedeploy</span> deploy-workflow <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1" aria-label="code-block-2-3"></a>    https://github.com/westerdijk-wm/snakemake-mlsa-ani . <span class="at">--branch</span> main</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Output
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Your terminal output should end with the following:</p>
+<pre class="text"><code>Writing template configuration...
+Writing template profiles
+Writing license
+Writing Snakefile with module definition...
+Deployment complete, now
+
+  * modify the configuration under ./config
+  * check and extend the workflow deployment under ./workflow/Snakefile
+
+according to your needs.</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="explore-input-parameters-and-files">Explore input parameters and files<a class="anchor" aria-label="anchor" href="#explore-input-parameters-and-files"></a>
+</h2>
+<p>You can see that <code>snakedeploy</code> mentions what we can do as
+follow-up:</p>
+<ul>
+<li>modify the configuration under <code>./config</code>
+</li>
+<li>check and extend the workflow deployment under
+<code>./workflow/Snakefile</code>
+</li>
+</ul>
+<p>The second option, is for modifying or extending the workflow, we
+will not do that in this workshop.</p>
+<p>Let’s check the <code>./config</code> (<code>./</code> actually means
+in this directory, so we could also say <code>config</code>):</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">ls</span> config/</span></code></pre>
+</div>
+<p>This will list the following files:</p>
+<ul>
+<li><code>config/config.yaml</code></li>
+<li><code>config/public_genomes.txt</code></li>
+<li><code>config/README.md</code></li>
+<li><code>config/ref-genes.fas</code></li>
+</ul>
+<p>In general, README files are the good place to start with. They are
+meant for humans to read. However, the online version is nicer to read:
+<a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/config/README.md" class="external-link">config/config.yaml</a></p>
+<div id="exercise-2-can-you-locate-the-reference-sequences" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-2-can-you-locate-the-reference-sequences" class="callout-inner">
+<h3 class="callout-title">Exercise 2: Can you locate the reference
+sequences?</h3>
+<div class="callout-content">
+<p>Checking the README can you find where the reference sequences are
+stored?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Answer
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>The can be found in <code>config/ref-genes.fas</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Here is a summary over the important input files and directories for
+this workflow:</p>
+<table class="table">
+<colgroup>
+<col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup>
+<thead><tr>
+<th>Input</th>
+<th>Location</th>
+<th>Role in the workflow</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Local genome assemblies</td>
+<td><code>genomes/</code></td>
+<td>One assembled genome per sample. The sample name is derived from the
+file name.</td>
+</tr>
+<tr>
+<td>Reference gene database</td>
+<td><code>config/ref-genes.fas</code></td>
+<td>FASTA file containing the reference loci to search for in each
+genome.</td>
+</tr>
+<tr>
+<td>Workflow configuration</td>
+<td><code>config/config.yaml</code></td>
+<td>Defines selected genes, tree method, ANI option, and public genome
+settings.</td>
+</tr>
+<tr>
+<td>Optional public genome list</td>
+<td><code>config/public_genomes.txt</code></td>
+<td>Lists NCBI assembly accessions that should be downloaded and
+included.</td>
+</tr>
+</tbody>
+</table>
+<div id="exercise-3-which-loci-will-be-analyzed" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-3-which-loci-will-be-analyzed" class="callout-inner">
+<h3 class="callout-title">Exercise 3: Which loci will be analyzed?</h3>
+<div class="callout-content">
+<p>According to the README <code>config/config.yaml</code> specifies
+which genes will be used.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="fu">head</span> config/config.yaml</span></code></pre>
+</div>
+<ol style="list-style-type: decimal">
+<li>Which loci are listed?</li>
+<li>Do these gene names also appear in the reference gene FASTA
+headers?</li>
+<li>Why is exact spelling important here?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Expected reasoning
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>Genes that will be analyzed are:</p>
+<ul>
+<li>calmodulin</li>
+<li>actin</li>
+<li>rpb2</li>
+<li>benA</li>
+</ul>
+<p>To check that the names occur in the reference gene database, inspect
+the FASTA headers:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="co"># Print lines starting with &gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="fu">grep</span> <span class="st">'^&gt;'</span> config/ref-genes.fas <span class="kw">|</span> <span class="fu">head</span></span></code></pre>
+</div>
+<p>The workflow expects headers of the form:</p>
+<pre class="text"><code>&gt;{strain}|{gene} optional description</code></pre>
+<p>Exact spelling matters because the workflow uses these names to
+decide which sequences belong to each locus. If <code>benA</code> is
+listed in the configuration but the reference database uses a different
+spelling, that locus will not be matched as intended.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="running-or-inspecting-the-workflow">Running or inspecting the workflow<a class="anchor" aria-label="anchor" href="#running-or-inspecting-the-workflow"></a>
+</h2>
+<p>It is often useful to begin with a dry run. A dry run asks Snakemake
+what it would do without executing the commands.</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="ex">snakemake</span> <span class="at">--dry-run</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1" aria-label="code-block-8-2"></a><span class="co"># Or </span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1" aria-label="code-block-8-3"></a><span class="ex">snakemake</span> <span class="at">-n</span></span></code></pre>
+</div>
+<p>Since we did not modify anything in the workflow, this shows what is
+the default run of the workflow with default input (refernce genes and
+public genomes).</p>
+<p>This workflow is comes with a default <code>profile</code> which
+means certain parameters are pre defined for use. So our above command
+is equal to running:</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">snakemake</span> <span class="at">-c</span> 10 <span class="at">--use-conda</span> <span class="at">-n</span></span></code></pre>
+</div>
+<div id="dry-runs-are-part-of-reproducible-analysis" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="dry-runs-are-part-of-reproducible-analysis" class="callout-inner">
+<h3 class="callout-title">Dry runs are part of reproducible
+analysis</h3>
+<div class="callout-content">
+<p>A dry run is not only a safety check. It also helps you understand
+how the workflow connects inputs to outputs. Before running a workflow
+on new data, it is good practice to ask:</p>
+<ul>
+<li>Which files will be created?</li>
+<li>Which rules will run?</li>
+<li>Which existing results will be reused?</li>
+<li>Does the requested target match the biological question?</li>
+</ul>
+</div>
+</div>
+</div>
+<p>We can see that a total of 90 steps will be executed. Let’s run the
+workflow now:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">snakemake</span> <span class="at">--cores</span> 10 <span class="at">--use-conda</span></span></code></pre>
+</div>
+</div>
+<div class="section level2">
+<h2 id="exploring-the-output-of-the-workflow">Exploring the output of the workflow<a class="anchor" aria-label="anchor" href="#exploring-the-output-of-the-workflow"></a>
+</h2>
+<p>Output files are not necessarily well standardized or described for
+workflows. In this case, the Github version describes the <a href="https://github.com/westerdijk-wm/snakemake-mlsa-ani/blob/main/docs/outputs.md" class="external-link">results/outputs</a></p>
+<p>Otherwise the snakemake log or the dry-run information can help you
+find the relevant output.</p>
+<p>This workflow also allows for generating a report, so let’s do that
+and explore the results that way.</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">snakemake</span> <span class="at">--report</span> report.html</span></code></pre>
+</div>
+<p>Then open <code>report.html</code> in a browser to check the results.
+The most important are the following:</p>
+<table class="table">
+<colgroup>
+<col width="50%">
+<col width="50%">
+</colgroup>
+<thead><tr>
+<th>Output</th>
+<th>Meaning</th>
+</tr></thead>
+<tbody>
+<tr>
+<td><code>results/QC/gene-qc-matrix.pdf</code></td>
+<td>Visual summary of the gene QC matrix.</td>
+</tr>
+<tr>
+<td><code>results/phylogenetics/MLSA.nwk</code></td>
+<td>Final rerooted MLSA tree in Newick format.</td>
+</tr>
+<tr>
+<td><code>results/phylogenetics/MLSA_tree.pdf</code></td>
+<td>Visualization of MLSA tree.</td>
+</tr>
+<tr>
+<td><code>results/ANI/skani/skani.pdf</code></td>
+<td>MLSA tree combined with ANI heatmap.</td>
+</tr>
+</tbody>
+</table>
+<p>With this you have successfully ran an external snakemake workflow by
+first using snakedeploy, checking the input parameters and then
+executing it.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Know where to find input parameters and files for a workflow</li>
+<li>Know how to deploy a local copy of a workflow</li>
+<li>Know what a dry run is</li>
+<li>Know how to run a workflow</li>
+<li>Know how to find the output files</li>
 </ul>
 </div>
 </div>
