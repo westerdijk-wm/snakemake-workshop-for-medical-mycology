@@ -1,7 +1,7 @@
 ---
 title: "Using Snakemake workflows, MLSA"
-teaching: 10 # teaching time in minutes
-exercises: 20 # exercise time in minutes
+teaching: 20 # teaching time in minutes
+exercises: 10 # exercise time in minutes
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -156,6 +156,8 @@ Here is a summary over the important input files and directories for this workfl
 | Workflow configuration | `config/config.yaml` | Defines selected genes, tree method, ANI option, and public genome settings. |
 | Optional public genome list | `config/public_genomes.txt` | Lists NCBI assembly accessions that should be downloaded and included. |
 
+::::::::::::::::::::::::::::::::::::: challenge 
+
 ### Exercise 3: Which loci will be analyzed?
 
 According to the README `config/config.yaml` specifies which genes will be used.
@@ -199,6 +201,7 @@ reference database uses a different spelling, that locus will not be matched as
 intended.
 
 :::::::::::::::::::::::::::::::::
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
@@ -222,7 +225,6 @@ So our above command is equal to running:
 ```bash
 snakemake -c 10 --use-conda -n
 ```
-
 
 ::::::::::::::::::::::::::::::::::::: callout
 
