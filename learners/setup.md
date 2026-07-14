@@ -5,13 +5,18 @@ title: Setup
 ## Software setup
 
 For this workshop you need to have access to a Unix style command line where you
-have can create conda environments.
+have can create **conda environments**.
+
+> [!NOTE]
+> Conda is an environment manager that allows you to install the specific versions of each package needed to run the analyses
 
 :::::::::::::::: spoiler
 
 ### Windows
 
-Use WSL [Ubuntu](https://apps.microsoft.com/detail/9pdxgncfsczv)
+Use the Windows Subsystem for Linux ([more information](https://learn.microsoft.com/en-us/windows/wsl/about))
+
+[Install the WSL with Ubuntu](https://apps.microsoft.com/detail/9pdxgncfsczv)
 
 ::::::::::::::::::::::::
 
@@ -33,14 +38,19 @@ Use Terminal
 
 ::::::::::::::::::::::::::::::::::::::: discussion
 
-If you don't yet have conda installed, then using
-[miniforge](https://github.com/conda-forge/miniforge) is a good option.
+conda is probably installed in your system already. To check, type the following in a terminal, followed by Enter:
+```bash
+conda -V
+```
+
+If you got an error, you don't yet have conda installed, then using
+[miniforge](https://conda-forge.org/download/) is a good option.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Setting up conda environment
 
-Run the following command in the terminal (command line):
+Run the following command in the terminal (command line) to create an environment called **snakemake**:
 
 ```bash
 conda create -c conda-forge -c bioconda -c nodefaults --name snakemake snakemake snakedeploy -y
@@ -87,7 +97,7 @@ Executing transaction: done
 ::::::::::::::::::::::::::::::::::::::: discussion
 
 
-### Optional editor
+### Optional: code editor
 
 It is recommended that you use [Visual Studio Code](https://code.visualstudio.com/)
 for working through this material, because it integrates the terminal, file structure
