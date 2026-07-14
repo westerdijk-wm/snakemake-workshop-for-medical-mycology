@@ -73,6 +73,12 @@ We will be using the following workflows during this workshop:
 - [westerdijk-wm/smkwf-bwa-gatk-snpeff](https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff)
     + A snakemake workflow for mapping, variant-calling and annotating variants using SNPeff 
 
+These example cover the most important methods in genomics for medical mycology:
+
+- MLSA for typing, identification and relatedness analysis
+- Phylogenomics: genome based relatedness analysis for outbreak investigation
+- Variant annotation in resistance genes: to get the an idea of the level of resistance based on known mutations in known genes
+
 ## Setting up the workflow for your analysis
 
 A well designed workflow includes documentation who you should use it.
@@ -116,6 +122,10 @@ template configuration files ready to edit.
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+Great, now you know how you can obtain and run the workflow.
+In the next episode, we will use this workflow, and learn more about
+the user aspects of snakemake workflows.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
