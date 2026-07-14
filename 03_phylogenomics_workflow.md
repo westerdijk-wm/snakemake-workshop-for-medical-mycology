@@ -265,7 +265,7 @@ cat config/units.tsv | cut -f1 > config/samples.tsv
 This reads, in the units file, selects the first column (before the first tab)
 and saves it to the samples file.
 
-> Actually, the only column checked in the samples files `sample`,
+> Actually, the only column checked in the samples files is `sample`,
 > so we could use the units file, and even change the `config/config.yaml`
 > to use it as samples (`samples: config/units.tsv`).
 

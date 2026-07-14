@@ -70,6 +70,7 @@ episodes:
 - 01_snakemake_intro.md
 - 02_using_workflows_MLSA.md
 - 03_phylogenomics_workflow.md
+- 04_resistance_mutations.md
 
 # Information for Learners
 learners: 
