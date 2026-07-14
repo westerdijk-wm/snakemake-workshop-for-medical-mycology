@@ -377,7 +377,7 @@ directory.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -386,7 +386,11 @@ directory.</p>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">ls</span></span></code></pre>
 </div>
 <p>Output:</p>
-<pre class="text"><code>CHANGELOG.md  config  LICENSE  profiles  README.md  workflow</code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>CHANGELOG.md  config  LICENSE  profiles  README.md  workflow</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -418,9 +422,13 @@ hidden.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Output </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<pre class="text"><code>.  ..  CHANGELOG.md  config  .git  .github  .gitignore  LICENSE  profiles  README.md  .snakemake-workflow-catalog.yml  .test  workflow</code></pre>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>.  ..  CHANGELOG.md  config  .git  .github  .gitignore  LICENSE  profiles  README.md  .snakemake-workflow-catalog.yml  .test  workflow</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -463,7 +471,7 @@ change.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Expected reasoning </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>You can compare files side by side on the command line using
 <code>diff -y</code></p>
@@ -475,7 +483,10 @@ change.</p>
 <p>On the left, you see the current workflow, and the right side shows
 the deployed one form the previous episode (here are the first 40
 lines):</p>
-<pre class="text"><code>from snakemake.utils import min_version				from snakemake.utils import min_version
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>from snakemake.utils import min_version				from snakemake.utils import min_version
 
 							      &gt;
 min_version("6.10.0")						min_version("6.10.0")
@@ -515,6 +526,7 @@ rule get_gbk:						      &lt;
     """							      &lt;
     Download data from NCBI and place it to correct location  &lt;
     """							      &lt;</code></pre>
+</div>
 <p>You can see that both have a similar block but different formatting
 that contains:
 <code>github("b-brankovics/bwa-gatk-fasttree-smkwf"</code></p>
@@ -557,8 +569,8 @@ in the catalog.</p>
 </div>
 </div>
 <p>Compare the two rule graphs:</p>
-<ul><li>[<a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph" class="external-link uri">https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph</a>]</li>
-<li>[snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph]</li>
+<ul><li><a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph" class="external-link">https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph</a></li>
+<li><a href="../snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph">snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph</a></li>
 </ul><p>You can see that the difference happens after
 <code>select_pass_calls</code>.</p>
 </div>
@@ -572,10 +584,13 @@ order of samples may differ).</p>
 <p>The most studied topic at the moment in <em>A. fumigatus</em> is its
 resistance to (tri)azoles. This resistance is usually due to mutations
 in the <em>cyp51A</em> (<em>erg11</em>) coding sequence or promotor
-region. This data set includes: - wildtype - non-resistant mutations -
-resistant point mutations - tandem repeat insertion in the promoter -
-resistance mutations in other genes</p>
-<div id="challenge-4-run-the-analysis" class="callout challenge">
+region. This data set includes:</p>
+<ul><li>wildtype</li>
+<li>non-resistant mutations</li>
+<li>resistant point mutations</li>
+<li>tandem repeat insertion in the promoter</li>
+<li>resistance mutations in other genes</li>
+</ul><div id="challenge-4-run-the-analysis" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -596,7 +611,7 @@ will check an alternative run option.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -645,7 +660,7 @@ tell snakemake which ones to use with the
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -707,7 +722,7 @@ which is relevant for resistance.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>You can search the <a href="https://www.mardy.net" class="external-link">Mardy database</a>
 per organism and you can filter results for genes and mutations.</p>
@@ -718,12 +733,16 @@ per organism and you can filter results for genes and mutations.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu">cut</span> <span class="at">-f1,4</span> .test/results/snpeff/gene_mutations_all.tsv</span></code></pre>
 </div>
 <p>This prints the sample and its <em>cyp51A</em> genotype:</p>
-<pre class="text"><code>Sample	cyp51A
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Sample	cyp51A
 09-7500806	Wildtype
 12-7505446	TR34/L98H
 56C17	TR46/Y121F/T289A
 CM7632	F46Y/M172V/N248T/D255E/E427K
 V226-02	G54R</code></pre>
+</div>
 <p>There are 3 relevant mutation sets:</p>
 <ul><li>TR34/L98H</li>
 <li>TR46/Y121F/T289A</li>
@@ -756,7 +775,7 @@ it will be one of these.)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Sample <code>56C17</code> has the <code>F219Y</code> mutation.</p>
 </div>
