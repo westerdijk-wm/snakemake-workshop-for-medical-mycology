@@ -258,6 +258,18 @@
 </div>
 <!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="03_phylogenomics_workflow.html">3. Phylogenomics workflow</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -938,6 +950,581 @@ executing it.</p>
 <li>Know what a dry run is</li>
 <li>Know how to run a workflow</li>
 <li>Know how to find the output files</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</div>
+</div></section><section id="aio-03_phylogenomics_workflow"><p>Content from <a href="03_phylogenomics_workflow.html">Phylogenomics workflow</a></p>
+<hr>
+<p>Last updated on 2026-07-14 |
+
+        <a href="https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology/edit/main/episodes/03_phylogenomics_workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What is phylogenmics?</li>
+<li>How to adjust a workflow from defaults to our desired input
+data?</li>
+<li>What are workflow diagrams?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Practice the documentation exploration skills</li>
+<li>Explore workflow documentation to understand configurations and
+input data</li>
+<li>Change those configuration and input data to fit the need of an
+analysis</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
+<p>In the previous episode, we looked at a workflow, explored the
+documentation, examined the default inputs, ran it with the defaults,
+and examined the results. Now we are going to take another workflow,
+where we are also going to change input data to match what we need.</p>
+<p>As an example, we will cover another important analysis method that
+is frequently used: phylogenomics or SNP-trees. This is a tool that can
+help us explore the genetic relatedness of isolates, which can be
+crucial in investigating potential outbreak events and to use it for
+source tracing.</p>
+<div class="section level2">
+<h2 id="what-is-phylogenomics">What is phylogenomics?<a class="anchor" aria-label="anchor" href="#what-is-phylogenomics"></a>
+</h2>
+<p>The name itself refers to phylogenetics based on genomics.
+Classically, phylogentics is based on a single or a couple of loci,
+usually obtained by PCR and sanger sequencing. Phylogenomics aims to use
+the “full” genome instead.</p>
+<p>There are three major groups within phylogenomics: 1) based on
+genome-wide SNP alignment, 2) based on orthologous gene alignments, and
+3) alignemnt free based methods (e.g. kmer similarity). We are going to
+use the first approach, because it is easy to standardize and is one of
+the modern standards. The second option requires more preparation and is
+more sensitive to annotation mistakes. The alignment free methods are
+used more for initial assessment and result in less reliable results,
+but makes the analysis computationally significantly lighter and require
+less storage.</p>
+</div>
+</div>
+<div class="section level1">
+<h1 id="explore-b-brankovicsbwa-gatk-fasttree-smkwf">Explore b-brankovics/bwa-gatk-fasttree-smkwf<a class="anchor" aria-label="anchor" href="#explore-b-brankovicsbwa-gatk-fasttree-smkwf"></a>
+</h1>
+<p>The workflow for this episode is <a href="https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf" class="external-link">b-brankovics/bwa-gatk-fasttree-smkwf</a>.</p>
+<p>Let’s check the documentation of <a href="https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf" class="external-link">Github</a>
+and at the <a href="https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf" class="external-link">Snakemake
+workflow catalog</a>.</p>
+<p>We can see the brief description: “<em>Variant calling workflow for
+creating SNP phylogenies</em>”</p>
+<div id="challenge-1-what-are-the-input-data-for-the-workflow" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-1-what-are-the-input-data-for-the-workflow" class="callout-inner">
+<h3 class="callout-title">Challenge 1: What are the input data for the
+workflow?</h3>
+<div class="callout-content">
+<p>Look at the workflow documentation and identify where are the input
+is defined. What are the 2-3 most input parameters sources?</p>
+<blockquote>
+<p>Hint: Phylogenomics relies on read mapping that requires a reference
+genome and sequencing reads for the samples to be analyzed.</p>
+</blockquote>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Expected answer </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>Reference genome is defined in <code>config/config.yaml</code> in the
+following section:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="fu">ref</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1" aria-label="code-block-1-2"></a><span class="co">  # NCBI/ENA/DBJ assembly accession, e.g. GCA_000001405.28</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1" aria-label="code-block-1-3"></a><span class="at">  </span><span class="fu">accession</span><span class="kw">:</span><span class="at"> GCF_000185945.1</span></span></code></pre>
+</div>
+<p>In this case, the reference is <a href="../ncbi.nlm.nih.gov/assembly/GCF_000185945.1">GCF_000185945.1</a>. If
+you check online than you can see that it is <em>Cryptococcus
+gattii</em> WM276 genome assembly ASM18594v1.</p>
+<p>The input data is defined through <code>config/config.yaml</code> in
+the following part:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="fu">samples</span><span class="kw">:</span><span class="at"> config/samples.tsv</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1" aria-label="code-block-2-2"></a><span class="fu">units</span><span class="kw">:</span><span class="at"> config/units.tsv</span></span></code></pre>
+</div>
+<p>So the actual information is <code>config/units.tsv</code> where the
+input is defined. Samples is just a list of samples from units to be
+analyzed. (This is useful, because the units file requires some work to
+create, and having a separate selection for the actual samples to
+analyze allows you to change which samples to include, if you find out
+that some are other species or that they are bad quality.)</p>
+<p>So input reads are defined as follows:</p>
+<pre class="text"><code>sample	unit	platform	fq1	fq2
+CBS11687	1	ILLUMINA	resources/reads/SRR7345539_1.fastq.gz	resources/reads/SRR7345539_2.fastq.gz
+MF46	1	ILLUMINA	resources/reads/SRR7345548_1.fastq.gz	resources/reads/SRR7345548_2.fastq.gz
+MF34	1	ILLUMINA	resources/reads/SRR7514423_1.fastq.gz	resources/reads/SRR7514423_2.fastq.gz
+MF13	1	ILLUMINA	resources/reads/SRR7514425_1.fastq.gz	resources/reads/SRR7514425_2.fastq.gz
+MF54	1	ILLUMINA	resources/reads/SRR7514424_1.fastq.gz	resources/reads/SRR7514424_2.fastq.gz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>So we can see that the default data set are of <em>Cryptococcus
+gattii</em> species complex. It uses a public genome as reference, and
+the input data is also public reads. We can recognize this by the IDs in
+the file names <code>SRR###</code> (<code>SRR</code> stands for NCBI
+SRA, <code>ERR</code> stands for EBI SRA, <code>DRR</code> stands for
+DDBJ SRA).</p>
+<p>If you check the documentation, you can see that “If the read files
+(fq1 and fq2) follow the following naming convention
+<code>resources/reads/&lt;SRA_ID&gt;_[12].fastq.gz</code> and they are
+not actually at the given path, then they will be downloaded from SRA DB
+automatically.” This means we need to write the input specification
+using this scheme to add public data.</p>
+<div class="section level2">
+<h2 id="deploy-the-workflow-locally">Deploy the workflow locally<a class="anchor" aria-label="anchor" href="#deploy-the-workflow-locally"></a>
+</h2>
+<div id="challenge-2-use-snakedeploy-to-download-the-workflow" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-2-use-snakedeploy-to-download-the-workflow" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Use snakedeploy to download the
+workflow</h3>
+<div class="callout-content">
+<p>Let’s move out of the working directory of the previous episode if
+you are still there, create a new directory <code>phylogenomics</code>,
+change to <code>phylogenomics</code> and deploy the workflow.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1" aria-label="code-block-4-1"></a><span class="fu">mkdir</span> phylogenomics</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1" aria-label="code-block-4-2"></a><span class="bu">cd</span> phylogenomics</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1" aria-label="code-block-4-3"></a><span class="ex">snakedeploy</span> deploy-workflow https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf . <span class="at">--branch</span> main</span></code></pre>
+</div>
+<p>An alternative way is to create the directory through
+<code>snakedeploy</code>:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1" aria-label="code-block-5-1"></a><span class="ex">snakedeploy</span> deploy-workflow https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf phylogenomics <span class="at">--branch</span> main</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1" aria-label="code-block-5-2"></a><span class="bu">cd</span> phylogenomics</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>We have a local copy, where we can change the input data.</p>
+</div>
+<div class="section level2">
+<h2 id="adjust-input-data">Adjust input data<a class="anchor" aria-label="anchor" href="#adjust-input-data"></a>
+</h2>
+<p>For our analysis at the moment, we would like to explore some
+<em>Aspergillus fumigatus</em> samples and look at their relatedness.
+There are two genomes that are frequently used as reference genomes for
+<em>A. fumigatus</em>, Af293 and A1163. The A1163 strain has a
+“wildtype” genome for many of its genes, and the next episodes looks at
+gene mutations, so let’s use A1163 strain as reference.</p>
+<div id="challenge-3-update-the-reference-genome" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-3-update-the-reference-genome" class="callout-inner">
+<h3 class="callout-title">Challenge 3: Update the reference genome</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal">
+<li>You need to find the identifier of the genome if A1163.</li>
+<li>You need to update the configuration to use this genome ID.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>You can find the ID at the <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/" class="external-link">NCBI genome
+site</a>, publications or searching online. Although NCBI/EBI/DDBJ are
+the sources of truth in this case.</p>
+<p>Your <code>config/config.yaml</code> should look like this:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">YAML<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode yaml" tabindex="0"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" tabindex="-1" aria-label="code-block-6-1"></a><span class="fu">ref</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1" aria-label="code-block-6-2"></a><span class="co">  # NCBI/ENA/DBJ assembly accession, e.g. GCA_000001405.28</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1" aria-label="code-block-6-3"></a><span class="at">  </span><span class="fu">accession</span><span class="kw">:</span><span class="at"> GCA_000150145.1</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The reference has been changed, now we need to change the input
+reads. For our example we want to use the following reads:</p>
+<table class="table">
+<thead><tr>
+<th>sample</th>
+<th>SRA ID</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>12-7505446</td>
+<td>ERR769500</td>
+</tr>
+<tr>
+<td>V226-02</td>
+<td>ERR12832798</td>
+</tr>
+<tr>
+<td>56C17</td>
+<td>ERR12832723</td>
+</tr>
+<tr>
+<td>09-7500806</td>
+<td>ERR769502</td>
+</tr>
+<tr>
+<td>CM7632</td>
+<td>SRR7418941</td>
+</tr>
+<tr>
+<td>CMMS340</td>
+<td>SRR36017306</td>
+</tr>
+<tr>
+<td>CMMS341</td>
+<td>SRR36017305</td>
+</tr>
+<tr>
+<td>CMMS342</td>
+<td>SRR36017304</td>
+</tr>
+<tr>
+<td>V254-50</td>
+<td>ERR12832815</td>
+</tr>
+</tbody>
+</table>
+<div id="challenge-4-update-the-input-reads" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-4-update-the-input-reads" class="callout-inner">
+<h3 class="callout-title">Challenge 4: Update the input reads</h3>
+<div class="callout-content">
+<p>Can you update the input reads based on the documentation, the
+default data and using the above table?</p>
+<p>Update or create a new <code>config/units.tsv</code> file.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<p>The <code>config/units.tsv</code> or other TSV file should look like
+this:</p>
+<pre class="text"><code>sample	unit	platform	fq1	fq2
+CMMS340	1	ILLUMINA	resources/reads/SRR36017306_1.fastq.gz	resources/reads/SRR36017306_2.fastq.gz
+CMMS341	1	ILLUMINA	resources/reads/SRR36017305_1.fastq.gz	resources/reads/SRR36017305_2.fastq.gz
+CMMS342	1	ILLUMINA	resources/reads/SRR36017304_1.fastq.gz	resources/reads/SRR36017304_2.fastq.gz
+12-7505446	1	ILLUMINA	resources/reads/ERR769500_1.fastq.gz	resources/reads/ERR769500_2.fastq.gz
+V226-02	1	ILLUMINA	resources/reads/ERR12832798_1.fastq.gz	resources/reads/ERR12832798_2.fastq.gz
+56C17	1	ILLUMINA	resources/reads/ERR12832723_1.fastq.gz	resources/reads/ERR12832723_2.fastq.gz
+09-7500806	1	ILLUMINA	resources/reads/ERR769502_1.fastq.gz	resources/reads/ERR769502_2.fastq.gz
+V254-50	1	ILLUMINA	resources/reads/ERR12832815_1.fastq.gz	resources/reads/ERR12832815_2.fastq.gz
+CM7632	1	ILLUMINA	resources/reads/SRR7418941_1.fastq.gz	resources/reads/SRR7418941_2.fastq.gz</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Awesome, we are almost set. There are 2 more things to check.
+Remember that <code>config/config.yaml</code> defines which unit file to
+use. If you created a new file that has a different name or relative
+path, then you need to update that in
+<code>config/config.yaml</code>.</p>
+<p>The final check is that our samples are selected for the analysis.
+Now you know that it can be some work to generate a units file, and why
+you don’t want to just through away your work when you want to (maybe
+temporarily) exclude a sample. So the final check is to change, the
+samples that will be analyzed, we want to include everything from our
+units file.</p>
+<p>We can do it the following way:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1" aria-label="code-block-8-1"></a><span class="fu">cat</span> config/units.tsv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f1</span> <span class="op">&gt;</span> config/samples.tsv</span></code></pre>
+</div>
+<p>This reads, in the units file, selects the first column (before the
+first tab) and saves it to the samples file.</p>
+<blockquote>
+<p>Actually, the only column checked in the samples files
+<code>sample</code>, so we could use the units file, and even change the
+<code>config/config.yaml</code> to use it as samples
+(<code>samples: config/units.tsv</code>).</p>
+</blockquote>
+</div>
+<div class="section level2">
+<h2 id="running-the-analysis">Running the analysis<a class="anchor" aria-label="anchor" href="#running-the-analysis"></a>
+</h2>
+<p>Great work, you have changed the default input to your desired input.
+Now, you are ready to run your analysis. In the previous episode, we
+already learned how to do it. Let’s see how it goes.</p>
+<div id="challenge-5-check-what-the-workflow-will-do" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-5-check-what-the-workflow-will-do" class="callout-inner">
+<h3 class="callout-title">Challenge 5: Check what the workflow will
+do</h3>
+<div class="callout-content">
+<p>These kind of worklfows are computationally intensive, use a lot of
+resources and take a long time. So it is a good idea to check that the
+proper data will be used.</p>
+<p>We have seen that a dry run is good way to check what would happen if
+we ran the workflow. Do you remember how to do it? If not do you know
+where to find the information. (You can always look things up.)</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1" aria-label="code-block-9-1"></a><span class="ex">snakemake</span> <span class="at">-n</span></span></code></pre>
+</div>
+<p>You can also save the info to file to explore the output:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1" aria-label="code-block-10-1"></a><span class="ex">snakemake</span> <span class="at">-n</span> <span class="op">&gt;</span>dry-run.txt</span></code></pre>
+</div>
+<p>Again, there is a profile file that is being used, so our command is
+equivalent to the following
+(<code>profiles/default/config.yaml</code>):</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1" aria-label="code-block-11-1"></a><span class="ex">snakemake</span> <span class="at">--use-conda</span> <span class="at">-p</span> <span class="at">-c</span> 8 <span class="at">-n</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Can you find the samples we defined in the output? Can you see the
+IDs that we specified?</p>
+<p>Now that we see that expected data is used, we can run our
+analysis.</p>
+<div id="challenge-6-run-the-analysis" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-6-run-the-analysis" class="callout-inner">
+<h3 class="callout-title">Challenge 6: Run the analysis</h3>
+<div class="callout-content">
+<p>Do you remember how to do it? If not do you know where to find the
+information. (You can always look things up.)</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1" aria-label="code-block-12-1"></a><span class="ex">snakemake</span></span></code></pre>
+</div>
+<p>Or more explicitly:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1" aria-label="code-block-13-1"></a><span class="ex">snakemake</span> <span class="at">--use-conda</span> <span class="at">-p</span> <span class="at">-c</span> 8</span></code></pre>
+</div>
+<p>This will take a while. Time for coffee, walk or other free time.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="checking-the-results">Checking the results<a class="anchor" aria-label="anchor" href="#checking-the-results"></a>
+</h2>
+<p>This workflow doesn’t really define what the output is, but we can
+guess from the descriotion: “<em>Variant calling workflow for creating
+SNP phylogenies</em>”. So we will get a phylogeny or tree, probably a
+Newick (<code>.nwk</code> file). Let’s check the dry run info.</p>
+<p>We can see that <code>results/phylogeny/fasttree-snvs.nwk</code> will
+be generated.</p>
+<p>Let’s see how this file looks like. We can use <a href="https://itol.embl.de" class="external-link">iTOL</a> to visualize it.</p>
+</div>
+<div class="section level2">
+<h2 id="bonusside-note-reduced-data-set-for-faster-analysis">[Bonus/side note] Reduced data set for faster analysis<a class="anchor" aria-label="anchor" href="#bonusside-note-reduced-data-set-for-faster-analysis"></a>
+</h2>
+<p>If you want to explore the results, but you don’t want to wait for
+long or you don’t have access to a strong computer, you can use the
+reduced test set of the the workflow. We will use the test set of the
+workflow from the next episode: <a href="https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff" class="external-link">westerdijk-wm/smkwf-bwa-gatk-snpeff</a></p>
+<p>For this we need to download the full repository of the workflow:</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1" aria-label="code-block-14-1"></a><span class="fu">git</span> clone https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff</span></code></pre>
+</div>
+<p>This created a <code>smkwf-bwa-gatk-snpeff</code> folder in our
+working directory you can see that its content is similar to our current
+directory, but has even more content.</p>
+<p>The standard test data for standardized workflows is located in the
+<code>.test</code> directory. Check what it contains
+(<code>smkwf-bwa-gatk-snpeff/.test</code>)</p>
+<div id="challenge-6-update-the-configuration-to-use-the-test-set" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="challenge-6-update-the-configuration-to-use-the-test-set" class="callout-inner">
+<h3 class="callout-title">Challenge 6: Update the configuration to use
+the test set</h3>
+<div class="callout-content">
+<p>Replace the config files in the working directorie’s
+<code>config</code> by
+<code>smkwf-bwa-gatk-snpeff/.test/config</code>.</p>
+<p>Can you guess where the input data is and where we need to move it?
+Then do the move.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/config .</span></code></pre>
+</div>
+<p>Check <code>config/units.tsv</code>, the input shoud be in
+<code>data/reads/</code> as you can see on
+<code>data/reads/12-7505446_1.fastq.gz</code>. This is always relative
+to the folder where <code>config</code> folder is.</p>
+<p>So we need to the following command:</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/data/ .</span></code></pre>
+</div>
+<p>Let’s check that it worked:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">ls</span> data/reads/12-7505446_1.fastq.gz</span></code></pre>
+</div>
+<p>Now you can go back to the steps to see how to test your
+configuration and run the analysis.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Great work, you have used a second workflow, and update the input to
+match your analysis needs. Phylogenomics is quite a complex analysis
+that requires a lot of steps and there are many parameters that we can
+use. Now, you can see that if we want to do a standard analysis with the
+defaults settings, we only need to change the input data and specify it
+in the configuration.</p>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>The real strength of workflow managers and standardized workflows is
+to empower users to run standard analysis reliably by only changing the
+input data for the analysis.</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<span class="callout-header">Key Points</span>
+<div class="callout-inner">
+<div class="callout-content">
+<ul>
+<li>Know where to find input parameters and files for a workflow</li>
+<li>Know how to deploy a local copy of a workflow</li>
+<li>Know how to change the input data</li>
+<li>Know how to run a workflow</li>
+<li>Know how where to find test data of standardized snakemake
+workflows</li>
+<li>Know why standardized (snakemake) workflows are useful for
+users</li>
 </ul>
 </div>
 </div>
