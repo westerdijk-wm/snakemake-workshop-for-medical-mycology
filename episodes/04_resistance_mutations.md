@@ -237,12 +237,12 @@ previous episode (the order of samples may differ).
 The most studied topic at the moment in  _A. fumigatus_ is its resistance to
 (tri)azoles. This resistance is usually due to mutations in the _cyp51A_ (_erg11_)
 coding sequence or promotor region. This data set includes:
+
 - wildtype
 - non-resistant mutations
 - resistant point mutations
 - tandem repeat insertion in the promoter
 - resistance mutations in other genes
-
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
