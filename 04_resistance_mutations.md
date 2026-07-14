@@ -68,7 +68,7 @@ ls
 
 Output:
 
-```text
+```output
 CHANGELOG.md  config  LICENSE  profiles  README.md  workflow
 ```
 
@@ -95,7 +95,7 @@ ls -a
 
 #### Output
 
-```text
+```output
 .  ..  CHANGELOG.md  config  .git  .github  .gitignore  LICENSE  profiles  README.md  .snakemake-workflow-catalog.yml  .test  workflow
 ```
 
@@ -140,7 +140,7 @@ diff -y workflow/Snakefile ../phylogenomics/workflow/Snakefile
 On the left, you see the current workflow, and the right side shows the deployed one
 form the previous episode (here are the first 40 lines):
 
-```text
+```output
 from snakemake.utils import min_version				from snakemake.utils import min_version
 
 							      >
@@ -223,8 +223,8 @@ Standardized workflows have `Workflow Rule Graph` section in the catalog.
 
 Compare the two rule graphs:
 
-- [https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph]
-- [snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph]
+- [https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf#workflow-rule-graph)
+- [snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph](snakemake.github.io/snakemake-workflow-catalog/docs/workflows/westerdijk-wm/smkwf-bwa-gatk-snpeff#workflow-rule-graph)
 
 You can see that the difference happens after `select_pass_calls`.
 
@@ -237,12 +237,12 @@ previous episode (the order of samples may differ).
 The most studied topic at the moment in  _A. fumigatus_ is its resistance to
 (tri)azoles. This resistance is usually due to mutations in the _cyp51A_ (_erg11_)
 coding sequence or promotor region. This data set includes:
+
 - wildtype
 - non-resistant mutations
 - resistant point mutations
 - tandem repeat insertion in the promoter
 - resistance mutations in other genes
-
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -357,7 +357,7 @@ cut -f1,4 .test/results/snpeff/gene_mutations_all.tsv
 
 This prints the sample and its _cyp51A_ genotype:
 
-```text
+```output
 Sample	cyp51A
 09-7500806	Wildtype
 12-7505446	TR34/L98H
