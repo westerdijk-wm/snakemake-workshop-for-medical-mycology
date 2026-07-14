@@ -2,7 +2,7 @@
 title: Summary and Setup
 ---
 
-This lesson is developed for medical mycologists. There two main goals with
+This lesson is developed for medical mycologists. There are two main goals with
 this learning material:
 
 - teach users how to use existing snakemake workflows and use their data
