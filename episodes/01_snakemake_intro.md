@@ -20,9 +20,9 @@ exercises: 2 # exercise time in minutes
 
 # What is Snakemake?
 
-> [Official Snakemake documation](https://snakemake.readthedocs.io/en/stable/)
+> [Official Snakemake documentation](https://snakemake.readthedocs.io/en/stable/)
 
-Snakemake is workflow management system, a tool to create reproducible and scalable data analyses.
+Snakemake is a workflow management system: a tool to create reproducible and scalable data analyses. Its purpose is to make it easy to run analyses that can consist on many steps and may need to be repeated many times.
 Workflows are described via a human readable, Python based language.
 They can be seamlessly scaled to server, cluster, grid and cloud environments, without the need to modify the workflow definition.
 Finally, Snakemake workflows can entail a description of required software, which will be automatically deployed to any execution environment.
@@ -31,12 +31,12 @@ Finally, Snakemake workflows can entail a description of required software, whic
 
 Use cases:  
 
-- You can create new workflow:
-    - You can write up an existing "manual" workflow
-    - You can write up a specific analysis for reproducibility
-    - You can build the Snakemake file (workflow) while you are analyzing your data
-- You can use existing workflows for your data
-- You can use existing workflows that you expand further on
+- Create new workflow:
+    - Convert an existing "manual" workflow
+    - Write up a specific analysis for reproducibility
+    - Build the Snakemake file (workflow) while you are analyzing your data
+- Use existing workflows on your data
+- Use existing workflows that you expand further on
 
 ::::::::::::::::::::::::::::::::::::: callout
 
@@ -45,7 +45,7 @@ will have a reproducible analysis. It will be also clear what kind of steps you 
 Snakemake can check if intermediary results have changed as you optimize different steps.
 
 Snakemake creates outputs in your working directory in a way you would create them
-by running the steps manually (unlike nextflow). This can help with learning and
+by running the steps manually. This can help with learning and
 adapting in a research environment.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -53,8 +53,8 @@ adapting in a research environment.
 # Using existing workflows
 
 In this workshop, we are going to be using existing workflows for our analysis.
-The goal is to educate users in how to us workflows and adjust inputs and configurations
-to meet their needs. Creating workflows is considered as development is more advanced
+The goal is to educate users in how to use workflows and adjust inputs and configurations
+to meet their needs. Creating workflows is considered more advanced
 than reusing existing workflows. Therefore, we will not create our own workflows.
 
 
@@ -67,13 +67,13 @@ where you can find workflows.
 We will be using the following workflows during this workshop:
 
 - [westerdijk-wm/snakemake-mlsa-ani](https://github.com/westerdijk-wm/snakemake-mlsa-ani)
-    + Snakemake workflow for MLSA (multi locus sequence analysis) and ANI analysis
+    + Snakemake workflow for **MLSA** (Multi Locus Sequence Analysis) and **ANI** (Average Nucleotide Identity) analysis
 - [b-brankovics/bwa-gatk-fasttree-smkwf](https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf/)
-    + Variant calling workflow for creating SNP phylogenies
+    + Variant calling workflow for creating SNP (Single Nucleotide Polymorphisms) phylogenies
 - [westerdijk-wm/smkwf-bwa-gatk-snpeff](https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff)
     + A snakemake workflow for mapping, variant-calling and annotating variants using SNPeff 
 
-These example cover the most important methods in genomics for medical mycology:
+These examples cover the most important methods in genomics for medical mycology:
 
 - MLSA for typing, identification and relatedness analysis
 - Phylogenomics: genome based relatedness analysis for outbreak investigation
@@ -81,7 +81,7 @@ These example cover the most important methods in genomics for medical mycology:
 
 ## Setting up the workflow for your analysis
 
-A well designed workflow includes documentation who you should use it.
+A well designed workflow includes documentation how you should use it.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -123,7 +123,7 @@ template configuration files ready to edit.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Great, now you know how you can obtain and run the workflow.
+Great! now you know how you can obtain and run the workflow.
 In the next episode, we will use this workflow, and learn more about
 the user aspects of snakemake workflows.
 
