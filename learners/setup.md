@@ -60,7 +60,7 @@ activated.
 :::::::::::::::::::::::: solution
 
 
-```text
+```output
 Downloading and Extracting Packages:
 
 Preparing transaction: done
