@@ -314,7 +314,7 @@ Check the `.test` directory so you see what will be used for the run.
 You can see the usually `config` folder with its contents. Plus `data`
 folder with reads.
 
-Run the workflow, and we will look at the results. Remember that it output will be inside `.test`.
+Run the workflow, and we will look at the results. Remember that its output will be inside `.test`.
 
 ## Examining resistance mutation data
 
@@ -398,6 +398,9 @@ Sample `56C17` has the `F219Y` mutation.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+Well done, you have completed a resistance screening. Based on literature
+and expert advise, you can update this workflow for your target oragnism
+and relevant genes.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
