@@ -1,6 +1,12 @@
 ---
-title: Setup
+title: Summary and Setup
 ---
+
+This lesson is developed for medical mycologists. There two main goals with
+this learning material:
+
+- teach users how to use existing snakemake workflows and use their data
+- give example workflows for the most common questions in medical mycology when it comes to genomics
 
 ## Software setup
 
@@ -107,13 +113,8 @@ and file editing nicely together.
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-<!--
 ## Data Sets
 
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
-
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
--->
+You can access expected output data from [https://knaw.data.surf.nl/s/yXEJKWY2KRADkx5](https://knaw.data.surf.nl/s/yXEJKWY2KRADkx5).
+The password will be shared during the workshop.
 
