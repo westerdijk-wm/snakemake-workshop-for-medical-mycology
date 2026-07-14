@@ -351,7 +351,11 @@ any links that you are not going to use.
       </p>
       </section><section id="setup"><section><h2 class="section-heading" id="software-setup">Software setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
 <hr class="half-width"><p>For this workshop you need to have access to a Unix style command
-line where you have can create conda environments.</p>
+line where you have can create <strong>conda environments</strong>.</p>
+<blockquote>
+<p>[!NOTE] Conda is an environment manager that allows you to install
+the specific versions of each package needed to run the analyses</p>
+</blockquote>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -359,7 +363,10 @@ line where you have can create conda environments.</p>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
-<p>Use WSL <a href="https://apps.microsoft.com/detail/9pdxgncfsczv" class="external-link">Ubuntu</a></p>
+<p>Use the Windows Subsystem for Linux (<a href="https://learn.microsoft.com/en-us/windows/wsl/about" class="external-link">more
+information</a>)</p>
+<p><a href="https://apps.microsoft.com/detail/9pdxgncfsczv" class="external-link">Install the
+WSL with Ubuntu</a></p>
 </div>
 </div>
 </div>
@@ -395,18 +402,27 @@ line where you have can create conda environments.</p>
 <span class="callout-header">Discussion</span>
 <div class="callout-inner">
 <div class="callout-content">
-<p>If you don’t yet have conda installed, then using <a href="https://github.com/conda-forge/miniforge" class="external-link">miniforge</a> is a good
+<p>conda is probably installed in your system already. To check, type
+the following in a terminal, followed by Enter:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">conda</span> <span class="at">-V</span></span></code></pre>
+</div>
+<p>If you got an error, you don’t yet have conda installed, then using
+<a href="https://conda-forge.org/download/" class="external-link">miniforge</a> is a good
 option.</p>
 </div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="setting-up-conda-environment">Setting up conda environment<a class="anchor" aria-label="anchor" href="#setting-up-conda-environment"></a></h3>
-<p>Run the following command in the terminal (command line):</p>
-<div class="codewrapper sourceCode" id="cb1">
+<p>Run the following command in the terminal (command line) to create an
+environment called <strong>snakemake</strong>:</p>
+<div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1" aria-label="code-block-1-1"></a><span class="ex">conda</span> create <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda <span class="at">-c</span> nodefaults <span class="at">--name</span> snakemake snakemake snakedeploy <span class="at">-y</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1" aria-label="code-block-2-1"></a><span class="ex">conda</span> create <span class="at">-c</span> conda-forge <span class="at">-c</span> bioconda <span class="at">-c</span> nodefaults <span class="at">--name</span> snakemake snakemake snakedeploy <span class="at">-y</span></span></code></pre>
 </div>
 <p>This will create the environment that we need and are going to use
 during the workshop.</p>
@@ -448,13 +464,13 @@ Executing transaction: done
 </div>
 </div>
 </div>
-<div id="optional-editor" class="callout discussion">
+<div id="optional-code-editor" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <span class="callout-header">Discussion</span>
-<div id="optional-editor" class="callout-inner">
-<h3 class="callout-title">Optional editor</h3>
+<div id="optional-code-editor" class="callout-inner">
+<h3 class="callout-title">Optional: code editor</h3>
 <div class="callout-content">
 <p>It is recommended that you use <a href="https://code.visualstudio.com/" class="external-link">Visual Studio Code</a> for working
 through this material, because it integrates the terminal, file
