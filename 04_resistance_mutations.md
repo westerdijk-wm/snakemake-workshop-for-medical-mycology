@@ -8,7 +8,7 @@ exercises: 10 # exercise time in minutes
 
 - How do workflows build on each other?
 - How to execute workflows in different folders?
-- How to generate publication ready mutation overview?
+- How to generate a publication ready mutation overview?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -23,7 +23,7 @@ exercises: 10 # exercise time in minutes
 
 # Introduction
 
-For the final workflow in this workshop, we are going to use workflow that
+For the final workflow in this workshop, we are going to use a workflow that
 also uses read-mapping and variant calling like the previous one.
 Here we also want to look at the impact of the variants to gene
 sequences. We will be looking at genes that when mutated in given ways
@@ -45,9 +45,9 @@ Let's move out of the working directory of the previous episode if
 you are still there.
 
 For this example we actually will download the whole repository (source) of the workflow.
-This is an alternative way, for running workflows locally.
+This is an alternative way, for running workflows locally instead of using `snakedeploy`.
 
-You can do this like this:
+You can do it like this:
 
 ```bash
 git clone https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff
@@ -138,7 +138,7 @@ diff -y workflow/Snakefile ../phylogenomics/workflow/Snakefile
 ```
 
 On the left, you see the current workflow, and the right side shows the deployed one
-form the previous episode (here are the first 40 lines):
+from the previous episode (here are the first 40 lines):
 
 ```output
 from snakemake.utils import min_version				from snakemake.utils import min_version
@@ -206,7 +206,7 @@ Which is followed by some new rules that are unique to this workflow.
 
 We can see here an example of how a workflow can be modified and extended.
 
-To further explore how these workflows differ let's look at their Rule Graphs.
+To further explore how these workflows differ let's look at their "Rule Graphs".
 
 
 ::::::::::::::::::::::::::::::::::::: callout
@@ -248,7 +248,7 @@ coding sequence or promotor region. This data set includes:
 
 ### Challenge 4: Run the analysis
 
-Although, we use `git clone` instead of `snakedeploy` we can run the analysis
+Although, we used `git clone` instead of `snakedeploy` we can run the analysis
 in the same way we have learned.
 
 Can you check the dry-run and then execute the workflow? Below we will check an alternative run option.
@@ -275,7 +275,7 @@ Or just `snakemake`
 
 ## Changing execution directory
 
-An alternative, way of running a workflow is to specify in which directory
+An alternative way of running a workflow is to specify in which directory
 it should run. This will not only change where the output is generated, but
 also where the workflow will look for input information.
 
@@ -311,7 +311,7 @@ snakemake --dir .test/
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 Check the `.test` directory so you see what will be used for the run.
-You can see the usually `config` folder with its contents. Plus `data`
+You can see the usual `config` folder with its contents. Plus the `data`
 folder with reads.
 
 Run the workflow, and we will look at the results. Remember that its output will be inside `.test`.
@@ -320,7 +320,7 @@ Run the workflow, and we will look at the results. Remember that its output will
 
 Variants data are stored in VCF/BCF files which are relatively hard to read.
 The workflow generates these variant files, then it annotates the impact of the
-variants: do they cause, frameshift, non-sense mutation, etc. This workflow
+variants: do they cause a frameshift, non-sense mutations, etc. This workflow
 then generates more user friendly outputs that we can check if we see relevant mutations.
 
 The main output of the workflow is `.test/results/snpeff/gene_mutations_all.tsv`.
@@ -355,7 +355,7 @@ Check which mutations are present:
 cut -f1,4 .test/results/snpeff/gene_mutations_all.tsv
 ```
 
-This prints the sample and its _cyp51A_ genotype:
+This prints two columns: the sample and its _cyp51A_ genotype:
 
 ```output
 Sample	cyp51A
@@ -377,7 +377,7 @@ There are 3 relevant mutation sets:
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 We can also look at another fungicide, methyl benzimidazole carbamate (MBC).
-One of the known, resistance mutations is in _benA_ **F219Y**.
+One of the known, resistance-conferring mutations is in _benA_ **F219Y**.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
