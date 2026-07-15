@@ -52,6 +52,13 @@ conda -V
 If you got an error, you don't yet have conda installed, then using
 [miniforge](https://conda-forge.org/download/) is a good option.
 
+```bash
+wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh -O installer.sh
+bash ./installer.sh -b -u -p ~/miniforge3
+rm installer.sh
+~/miniforge3/bin/conda init bash
+```
+
 :::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ### Setting up conda environment
