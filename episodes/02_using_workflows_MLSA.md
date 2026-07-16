@@ -33,15 +33,15 @@ generate phylogenetic and genomic similarity analyses from assembled genomes.
 
 Starting from genome assemblies, the pipeline:
 
-- validates the reference gene database
-- assesses genome assembly quality (QUAST)
-- extracts homologous loci using reference sequences (minimap2)
-- performs locus-level quality control
-- generates multiple sequence alignments (MUSCLE)
-- concatenates loci into MLSA supermatrices
-- infers phylogenetic trees (IQ-TREE, RAxML, or FastTree)
-- optionally computes ANI between genomes (skani, FastANI, or pyANI)
-- optionally downloads and incorporates public genomes from NCBI
+- Validates the reference gene database
+- Assesses genome assembly quality (QUAST)
+- Extracts homologous loci using reference sequences (minimap2)
+- Performs locus-level quality control
+- Generates multiple sequence alignments (MUSCLE)
+- Concatenates loci into MLSA supermatrices
+- Infers phylogenetic trees (IQ-TREE, RAxML, or FastTree)
+- Optionally computes ANI between genomes (skani, FastANI, or pyANI)
+- Optionally downloads and incorporates public genomes from NCBI
 
 Originally developed for fungal phylogenetics, but applicable to any organism
 with suitable reference loci.
@@ -55,7 +55,7 @@ For this, we will use `snakedeploy`.
 
 ::::::::::::::::::::::::::::::::::::: callout
 
-Remember to setup a `snakemake` environment specified in the
+Remember to setup a `snakemake` environment specified in the [setup](https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/index.html#setting-up-conda-environment)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -63,8 +63,8 @@ Remember to setup a `snakemake` environment specified in the
 
 ### Exercise 1: Deploy workflow for local execution
 
-Create a directory, `mlsa` that we will use for this episode,
-and change to that directory.
+*Make a directory* (`mkdir`) called `mlsa` that we will use for this episode,
+and *change to that directory* (`cd`).
 
 ```bash
 mkdir mlsa
@@ -72,12 +72,11 @@ cd mlsa
 ```
 
 Then we need to activate our conda environment `snakemake`,
-so we can use `` to get the workflow locally.
+so we can use `snakedeploy` to get the workflow locally.
 
 ```bash
 conda activate snakemake
-snakedeploy deploy-workflow \
-    https://github.com/westerdijk-wm/snakemake-mlsa-ani . --tag v1.0.0
+snakedeploy deploy-workflow https://github.com/westerdijk-wm/snakemake-mlsa-ani . --tag v1.0.0
 ```
 
 :::::::::::::::::::::::: solution 
@@ -86,7 +85,7 @@ snakedeploy deploy-workflow \
 
 Your terminal output should end with the following:
 
-```text
+```output
 Writing template configuration...
 Writing template profiles
 Writing license
@@ -110,10 +109,10 @@ You can see that `snakedeploy` mentions what we can do as follow-up:
 * modify the configuration under `./config`
 * check and extend the workflow deployment under `./workflow/Snakefile`
 
-The second option, is for modifying or extending the workflow, we will not do that in
+The second option is for modifying or extending the workflow, but we will not cover that in
 this workshop.
 
-Let's check the `./config` (`./` actually means in this directory, so we could also say `config`):
+Let's *list the contents* (`ls`) of the `./config` directory (`./` actually means "in this directory", so we could also say `config`):
 
 ```bash
 ls config/
@@ -134,7 +133,7 @@ However, the online version is nicer to read: [config/README.md](https://github.
 
 ### Exercise 2: Can you locate the reference sequences?
 
-Checking the README can you find where the reference sequences are stored?
+Checking the README file, can you find where the reference sequences are stored?
 
 :::::::::::::::::::::::: solution 
 
@@ -190,7 +189,7 @@ grep '^>' config/ref-genes.fas | head
 
 The workflow expects headers of the form:
 
-```text
+```output
 >{strain}|{gene} optional description
 ```
 
@@ -206,7 +205,7 @@ intended.
 
 ## Running or inspecting the workflow
 
-It is often useful to begin with a dry run. A dry run asks Snakemake
+It is often useful to begin with a "dry run". A dry run asks Snakemake
 what it would do without executing the commands.
 
 ```bash
@@ -216,9 +215,9 @@ snakemake -n
 ```
 
 Since we did not modify anything in the workflow, this shows what is the default run
-of the workflow with default input (refernce genes and public genomes).
+of the workflow with default input (reference genes and public genomes).
 
-This workflow is comes with a default `profile` which means certain parameters are pre defined for use.
+This workflow comes with a default `profile` which means certain parameters are predefined for use.
 So our above command is equal to running:
 
 ```bash
@@ -243,7 +242,7 @@ practice to ask:
 We can see that a total of 90 steps will be executed. Let's run the workflow now:
 
 ```bash
-snakemake --cores 10 --use-conda
+snakemake
 ```
 
 ## Exploring the output of the workflow
@@ -270,7 +269,7 @@ Then open `report.html` in a browser to check the results. The most important ar
 | `results/ANI/skani/skani.pdf` | MLSA tree combined with ANI heatmap. |
 
 With this you have successfully run an external snakemake workflow by first
-using snakedeploy, checking the input parameters and then executing it. 
+using `snakedeploy`, checking the input parameters and then executing it. 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
