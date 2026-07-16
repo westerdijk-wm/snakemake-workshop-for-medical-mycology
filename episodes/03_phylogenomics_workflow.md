@@ -6,7 +6,7 @@ exercises: 10 # exercise time in minutes
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What is phylogenmics?
+- What is phylogenomics?
 - How to adjust a workflow from defaults to our desired input data?
 - What are workflow diagrams?
 
@@ -36,14 +36,14 @@ Now we are going to take another workflow, where we are also going to change
 input data to match what we need.
 
 As an example, we will cover another important analysis method that is frequently used:
-phylogenomics or SNP-trees. This is a tool that can help us explore the genetic relatedness
+phylogenomics. This is a tool that can help us explore the genetic relatedness
 of isolates, which can be crucial in investigating potential outbreak events and to use it
 for source tracing.
 
 ## What is phylogenomics?
 
 The name itself refers to phylogenetics based on genomics. Classically, phylogentics
-is based on a single or a couple of loci, usually obtained by PCR and sanger sequencing.
+is based on a single or a couple of loci, usually obtained by PCR and Sanger sequencing.
 Phylogenomics aims to use the "full" genome instead.
 
 There are three major groups within phylogenomics: 1) based on genome-wide SNP alignment,
@@ -55,11 +55,10 @@ initial assessment and result in less reliable results, but makes the analysis
 computationally significantly lighter and require less storage.
 
 
-# Explore b-brankovics/bwa-gatk-fasttree-smkwf
+# Explore the workflow
 
-The workflow for this episode is [b-brankovics/bwa-gatk-fasttree-smkwf](https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf).
-
-Let's check the documentation of [Github](https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf)
+The workflow for this episode is b-brankovics/bwa-gatk-fasttree-smkwf. 
+Let's check its documentation on [Github](https://github.com/b-brankovics/bwa-gatk-fasttree-smkwf)
 and at the [Snakemake workflow catalog](https://snakemake.github.io/snakemake-workflow-catalog/docs/workflows/b-brankovics/bwa-gatk-fasttree-smkwf).
 
 We can see the brief description: "_Variant calling workflow for creating SNP phylogenies_"
@@ -87,7 +86,7 @@ ref:
 ```
 
 In this case, the reference is [GCF_000185945.1](ncbi.nlm.nih.gov/assembly/GCF_000185945.1).
-If you check online than you can see that it is _Cryptococcus gattii_ WM276 genome assembly ASM18594v1.
+If you check online then you can see that it is _Cryptococcus gattii_ WM276 genome assembly ASM18594v1.
 
 The input data is defined through `config/config.yaml` in the following part:
 
@@ -96,8 +95,8 @@ samples: config/samples.tsv
 units: config/units.tsv
 ```
 
-So the actual information is `config/units.tsv` where the input is defined.
-Samples is just a list of samples from units to be analyzed.
+So the actual information is in `config/units.tsv` where the input is defined.
+`config/samples.tsv` is just a list of which samples from the units file will be analyzed.
 (This is useful, because the units file requires some work to create,
 and having a separate selection for the actual samples to analyze
 allows you to change which samples to include, if you find out that some
@@ -118,7 +117,7 @@ MF54	1	ILLUMINA	resources/reads/SRR7514424_1.fastq.gz	resources/reads/SRR7514424
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-So we can see that the default data set are of 
+We can see that the default data set are of 
 _Cryptococcus gattii_ species complex. It uses a public genome as reference,
 and the input data is also public reads. We can recognize this by the IDs in the file
 names `SRR###` (`SRR` stands for NCBI SRA, `ERR` stands for EBI SRA, `DRR` stands for DDBJ SRA).
@@ -244,14 +243,14 @@ CM7632	1	ILLUMINA	resources/reads/SRR7418941_1.fastq.gz	resources/reads/SRR74189
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Awesome, we are almost set. There are 2 more things to check.
+Awesome! we are almost set. There are 2 more things to check.
 Remember that `config/config.yaml` defines which unit file to use.
 If you created a new file that has a different name or relative path,
 then you need to update that in `config/config.yaml`.
 
 The final check is that our samples are selected for the analysis.
 Now you know that it can be some work to generate a units file, and
-why you don't want to just through away your work when you want to
+why you don't want to just throw away your work when you want to
 (maybe temporarily) exclude a sample. So the final check is to change,
 the samples that will be analyzed, we want to include everything from
 our units file.
@@ -262,8 +261,8 @@ We can do it the following way:
 cat config/units.tsv | cut -f1 > config/samples.tsv
 ```
 
-This reads, in the units file, selects the first column (before the first tab)
-and saves it to the samples file.
+This commands read the units file, select the first column (before the first tab)
+and save it to the samples file.
 
 > Actually, the only column checked in the samples files is `sample`,
 > so we could use the units file, and even change the `config/config.yaml`
@@ -285,8 +284,8 @@ of resources and take a long time. So it is a good idea to
 check that the proper data will be used.
 
 We have seen that a dry run is good way to check what would happen
-if we ran the workflow. Do you remember how to do it? If not
-do you know where to find the information. (You can always look things up.)
+if we ran the workflow. Do you remember how to do it? If not,
+do you know where to find the information? (You can always look things up.)
 
 :::::::::::::::::::::::: solution 
 
@@ -299,7 +298,7 @@ snakemake -n
 You can also save the info to file to explore the output:
 
 ```bash
-snakemake -n >dry-run.txt
+snakemake -n > dry-run.txt
 ```
 
 Again, there is a profile file that is being used, so our command is
@@ -316,14 +315,14 @@ snakemake --use-conda -p -c 8 -n
 Can you find the samples we defined in the output?
 Can you see the IDs that we specified?
 
-Now that we see that expected data is used, we can run our analysis.
+Now that we see that the expected data is used, we can run our analysis.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ### Challenge 6: Run the analysis
 
-Do you remember how to do it? If not do you know where to find the information.
+Do you remember how to do it? If not, do you know where to find the information?
 (You can always look things up.)
 
 :::::::::::::::::::::::: solution 
@@ -349,7 +348,7 @@ This will take a while. Time for coffee, walk or other free time.
 ## Checking the results
 
 This workflow doesn't really define what the output is, but we can guess from the
-descriotion: "_Variant calling workflow for creating SNP phylogenies_".
+description: "_Variant calling workflow for creating SNP phylogenies_".
 So we will get a phylogeny or tree, probably a Newick (`.nwk` file).
 Let's check the dry run info.
 
@@ -360,7 +359,7 @@ Let's see how this file looks like. We can use [iTOL](https://itol.embl.de) to v
 ## [Bonus/side note] Reduced data set for faster analysis
 
 If you want to explore the results, but you don't want to wait for
-long or you don't have access to a strong computer, you can use the reduced
+long or you don't have access to a powerful computer, you can use the reduced
 test set of the the workflow. We will use the test set of the workflow from the
 next episode: [westerdijk-wm/smkwf-bwa-gatk-snpeff](https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff) 
 
@@ -370,7 +369,7 @@ For this we need to download the full repository of the workflow:
 git clone https://github.com/westerdijk-wm/smkwf-bwa-gatk-snpeff
 ```
 
-This created a `smkwf-bwa-gatk-snpeff` folder in our working directory
+This created a `smkwf-bwa-gatk-snpeff` folder in our working directory;
 you can see that its content is similar to our current directory, but has even
 more content.
 
@@ -382,7 +381,7 @@ directory. Check what it contains (`smkwf-bwa-gatk-snpeff/.test`)
 
 ### Challenge 6: Update the configuration to use the test set
 
-Replace the config files in the working directorie's `config`
+Replace the config files in the working directory's `config`
 by `smkwf-bwa-gatk-snpeff/.test/config`.
 
 Can you guess where the input data is and where we need to move it?
@@ -398,7 +397,7 @@ mv smkwf-bwa-gatk-snpeff/.test/config .
 
 Check `config/units.tsv`, the input shoud be in `data/reads/`
 as you can see on `data/reads/12-7505446_1.fastq.gz`.
-This is always relative to the folder where `config` folder is.
+This is always relative to the folder where the `config` folder is.
 
 So we need to the following command:
 
@@ -418,7 +417,7 @@ Now you can go back to the steps to see how to test your configuration and run t
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-Great work, you have used a second workflow, and update the input to match
+Great work, you have used a second workflow, and updated the input to match
 your analysis needs. Phylogenomics is quite a complex analysis that requires
 a lot of steps and there are many parameters that we can use. Now, you can see
 that if we want to do a standard analysis with the defaults settings, we only
