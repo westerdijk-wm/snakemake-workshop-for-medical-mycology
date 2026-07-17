@@ -294,7 +294,7 @@
       </div>
     </nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Phylogenomics workflow</h1>
-        <p>Last updated on 2026-07-14 |
+        <p>Last updated on 2026-07-17 |
 
         <a href="https://github.com/westerdijk-wm/snakemake-workshop-for-medical-mycology/edit/main/episodes/03_phylogenomics_workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -774,21 +774,29 @@ Then do the move.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1" aria-label="code-block-15-1"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/config .</span></code></pre>
 </div>
+<p>You may need to remove the original ‘config’ folder first, if you get
+an error.</p>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">rm</span> <span class="at">-r</span> config</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1" aria-label="code-block-16-2"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/config .</span></code></pre>
+</div>
 <p>Check <code>config/units.tsv</code>, the input shoud be in
 <code>data/reads/</code> as you can see on
 <code>data/reads/12-7505446_1.fastq.gz</code>. This is always relative
 to the folder where <code>config</code> folder is.</p>
 <p>So we need to the following command:</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1" aria-label="code-block-16-1"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/data/ .</span></code></pre>
-</div>
-<p>Let’s check that it worked:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">ls</span> data/reads/12-7505446_1.fastq.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1" aria-label="code-block-17-1"></a><span class="fu">mv</span> smkwf-bwa-gatk-snpeff/.test/data/ .</span></code></pre>
+</div>
+<p>Let’s check that it worked:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1" aria-label="code-block-18-1"></a><span class="fu">ls</span> data/reads/12-7505446_1.fastq.gz</span></code></pre>
 </div>
 <p>Now you can go back to the steps to see how to test your
 configuration and run the analysis.</p>
@@ -902,8 +910,8 @@ any links that you are not going to use.
   "url": "https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/03_phylogenomics_workflow.html",
   "identifier": "https://westerdijk-wm.github.io/snakemake-workshop-for-medical-mycology/03_phylogenomics_workflow.html",
   "dateCreated": "2026-07-09",
-  "dateModified": "2026-07-14",
-  "datePublished": "2026-07-15"
+  "dateModified": "2026-07-17",
+  "datePublished": "2026-07-17"
 }
 
   </script><script>
