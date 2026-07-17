@@ -396,6 +396,13 @@ Then do the move.
 mv smkwf-bwa-gatk-snpeff/.test/config .
 ```
 
+You may need to remove the original 'config' folder first, if you get an error.
+
+```bash
+rm -r config
+mv smkwf-bwa-gatk-snpeff/.test/config .
+```
+
 Check `config/units.tsv`, the input shoud be in `data/reads/`
 as you can see on `data/reads/12-7505446_1.fastq.gz`.
 This is always relative to the folder where `config` folder is.
