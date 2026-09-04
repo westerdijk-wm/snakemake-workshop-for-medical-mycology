@@ -129,7 +129,7 @@ the user aspects of snakemake workflows.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Know what Snakemake is and where to find more information ([Official Snakemake documation](https://snakemake.readthedocs.io/en/stable/))
+- Know what Snakemake is and where to find more information ([Official Snakemake documentation](https://snakemake.readthedocs.io/en/stable/))
 - Know where to find workflows: [snakemake-workflow-catalog](https://snakemake.github.io/snakemake-workflow-catalog/docs/all_standardized_workflows.html)
 - Know how to find setup instructions
 
